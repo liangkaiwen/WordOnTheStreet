@@ -1,0 +1,9 @@
+{
+  "firebase": "word-on-the-street",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
