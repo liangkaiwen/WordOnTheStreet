@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
   background-color: purple; }
 
 p {
@@ -6,6 +7,12 @@ p {
 }
 
 #button {
+=======
+  background-color: white; }
+
+#button {
+  display: none;
+>>>>>>> login
   position: absolute;
   font-size: 200%;
   left: 87%;
