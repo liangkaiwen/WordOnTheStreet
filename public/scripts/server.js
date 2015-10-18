@@ -25,26 +25,8 @@ var geoQuery = geoFire.query({
   radius: radiusInKm
 });
 
-/* Adds new vehicle markers to the map when they enter the query */
-geoQuery.on("key_entered", function(shoutoutID, shoutoutLocation) {
-  // Specify that the vehicle has entered this query
-  shoutoutsInQuery[shoutoutID] = true;
-
-  // Look up the vehicle's data in the Transit Open Data Set
-  firebaseRef.child("shoutouts").child(uid).once("value", function(dataSnapshot) {
-    // Get the vehicle data from the Open Data Set
-    vehicle = dataSnapshot.val();
-
-    // If the vehicle has not already exited this query in the time it took to look up its data in the Open Data
-    // Set, add it to the map
-    if (vehicle !== null && vehiclesInQuery[vehicleId] === true) {
-      // Add the vehicle to the list of vehicles in the query
-      vehiclesInQuery[vehicleId] = vehicle;
-
-      // Create a new marker for the vehicle
-      vehicle.marker = createVehicleMarker(vehicle, getVehicleColor(vehicle));
-    }
-  });
+firebaseRef.forEach(function(child) {
+	console.log(child.location.latitude);
 });
 
 
