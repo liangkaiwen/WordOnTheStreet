@@ -1,3 +1,2 @@
-(function() {
-
-})();
+$(window).load(function() {
+});
