@@ -1,7 +1,6 @@
 //initializes Google Map
 var initMap = function() {
 	//getLocation();
-	console.log("ran");
 	var map = new google.maps.Map($("#map")[0], {
     	center: {lat: -34.397, lng: 150.644},
     	scrollwheel: false,
@@ -24,6 +23,17 @@ var initMap = function() {
       			animation: google.maps.Animation.DROP,
       			title: "We are here"
       		});
+
+          var shoutouts = server.getShoutouts(pos.lat, pos.lng, 1000);
+          for (var i = 0; i < shoutouts.length; i++) {
+            var shoutout = shoutouts[i];
+            var shoutoutMarker = new google.maps.Marker({
+              position: shoutout.location,
+              map: map,
+              draggable: false,
+              animation: google.maps.Animation.DROP
+            });
+          }
 
       		map.setZoom(13);
 

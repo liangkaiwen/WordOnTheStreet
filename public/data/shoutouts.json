@@ -1,0 +1,13 @@
+{
+	"shoutouts":[
+		{
+			"title": "Mt. Rainier View",
+			"location": {
+				"lat": 47.654144,
+				"lng": -122.308045
+			},
+			"description": "On clear days, you can see Mount Rainier over the fountain. It's gorgeous and must see!",
+			"category": "Place of Interest"
+		}
+	]
+}
