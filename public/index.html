@@ -1,14 +1,111 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Word On The Street</title>
+	<!-- load libraries -->
 	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="lib/materialize.min.js"></script>
+	<script type="text/javascript" src="lib/materialize.js"></script>
+	<script type="text/javascript" src="scripts/login.js"></script
 	<script type="text/javascript" src="scripts/main.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/main.css"></link>
+	<script type="text/javascript" src="scripts/map.js"></script>
+	<script type="text/javascript" src="scripts/button.js"></script>
+	<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN6Cs7tcFqMAExH-K4_9F-sKyXWkzjmQ8&callback=initMap">
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+	<link rel="stylesheet" type="text/css" href="css/login.css"></link>
+	<link rel="stylesheet" type="text/css" href="css/addbutton.css"></link>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css"></link>
+
 </head>
 <body>
-	<div id="sign-in">
-	</div>
-	<div id="app">
-	</div>
+	<main>
+		<div id="sign-in">
+			<img id="logo" src="resources/logo1.png" alt="logoimage">
+			<div class="row">
+    			<form id="login" class="col s12" action="#">
+    				<div class="row">
+        				<div class="input-field col s12">
+          					<input id="username" type="text" class="validate">
+          					<label for="username">Username</label>
+        				</div>
+      				</div>
+      				<div class="row">
+        				<div class="input-field col s12">
+          					<input id="password" type="password" class="validate">
+          					<label for="password">Password</label>
+        				</div>
+      				</div>
+      				<div align="center">
+      					<button id="loginbutton" class="btn waves-effect waves-light" type="submit" name="action">Log In</button>
+      				</div>
+    			</form>
+  			</div>
+  			<div id="loadingscreen" style="display: none;">
+  				<div class="preloader-wrapper big active">
+    				<div class="spinner-layer spinner-blue-only">
+      					<div class="circle-clipper left">
+        					<div class="circle"></div>
+      					</div><div class="gap-patch">
+        					<div class="circle"></div>
+      					</div><div class="circle-clipper right">
+        					<div class="circle"></div>
+				    	</div>
+				    </div>
+				</div>
+  			</div>
+		</div>
+		<div id="app">
+			<div id="map" style="opacity: .3;">
+			</div>
+		</div>
+		
+		<div class = "col-md-6" id="addinfo">
+			<action="#">
+				<div id="body2">
+					<div class="row">
+						<h3>Add a Shoutout!</h3>	
+					</div>
+					<div class="row">
+						<form class="row">
+							<a class='dropdown-button btn col s6' href='#' data-activates='dropdown1'>Type: </a>
+						    <ul id='dropdown1' class='dropdown-content'>
+						      <li value="cool">Cool Places to Visit</li>
+						      <li class="divider"></li>
+						      <li value="restaurants">Restaurants</li>
+						      <li class="divider"></li>
+						      <li value="scavenger">Scavenger Hunt Game</li>
+						    </ul>
+						</form>
+					    <form class="row">
+					      <div class="row"> 
+					        <div class="input-field col s12">
+					          <input id="title" type="text" class="validate">
+					          <label for="title">Title</label>
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <input id="textarea1" type="password" class="materialize-textarea">
+					          <label for="textarea1">Description</label>
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <input id="media" type="email" class="validate">
+					          <label for="media">Media</label>
+					        </div>
+					      </div> 	
+					      <div align="center">
+					      	<button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+						  </div>
+					    </form>
+					</div>
+				</div>
+		</div>
+		<button id="button" class="btn-floating btn-large waves-effect waves-light red">+</button>
+
+	</main>
 </body>
 </html>
