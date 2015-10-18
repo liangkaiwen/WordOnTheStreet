@@ -1,6 +1,7 @@
 //initializes Google Map
 var initMap = function() {
 	//getLocation();
+	console.log("ran");
 	var map = new google.maps.Map($("#map")[0], {
     	center: {lat: -34.397, lng: 150.644},
     	scrollwheel: false,
