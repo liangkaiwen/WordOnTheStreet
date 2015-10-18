@@ -34,14 +34,16 @@
 					</div>
 					<div class="row">
 						<form class="row">
-							<a class='dropdown-button btn col s6' href='#' data-activates='dropdown1'>Type: </a>
-						    <ul id='dropdown1' class='dropdown-content'>
-						      <li value="cool">Cool Places to Visit</li>
-						      <li class="divider"></li>
-						      <li value="restaurants">Restaurants</li>
-						      <li class="divider"></li>
-						      <li value="scavenger">Scavenger Hunt Game</li>
-						    </ul>
+							<p>Category:</p>
+						     <!-- Dropdown Trigger -->
+						  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+
+						  <!-- Dropdown Structure -->
+						  <ul id='dropdown1' class='dropdown-content'>
+						    <li><a href="#!">Cool Places to Visit</a></li>
+						    <li><a href="#!">Restaurants</a></li>
+						    <li><a href="#!">Scavenger Hunt</a></li>
+						  </ul>
 						</form>
 					    <form class="row">
 					      <div class="row"> 
@@ -52,14 +54,14 @@
 					      </div>
 					      <div class="row">
 					        <div class="input-field col s12">
-					          <input id="textarea1" type="password" class="materialize-textarea">
+					          <input id="textarea1" type="text" class="materialize-textarea">
 					          <label for="textarea1">Description</label>
 					        </div>
 					      </div>
 					      <div class="row">
 					        <div class="input-field col s12">
-					          <input id="media" type="email" class="validate">
-					          <label for="media">Media</label>
+					          <p>Insert a Picture</p>
+					          <input id="media" type="file" name="imagefilename" class="validate" accept="image/x-png, image/gif, image/jpeg">
 					        </div>
 					      </div> 	
 					      <div align="center">
