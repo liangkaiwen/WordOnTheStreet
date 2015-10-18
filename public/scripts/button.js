@@ -4,8 +4,20 @@ $(window).load(function() {
 
 function button() {
 	$('#button').click(function() {
-		$('#addinfo').fadeIn(100);
+		var state = $('#button').text()
+		if(state == '+') {
+			$('#addinfo').fadeIn(100);
+			$('#button').html('-');	
+		} else {
+			$('#addinfo').fadeOut(100);
+			$('#button').html('+');
+		}
+		
 	});
+	$('#map').click(function() {
+		$('#addinfo').fadeOut(100);
+		$('#button').html('+');
+	})
 }
 /*document.addEventListener("DOMContentLoaded", function() {
 	var button = document.getElementById('button');
