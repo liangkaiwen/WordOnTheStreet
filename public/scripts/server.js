@@ -1,7 +1,3 @@
-var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/');
-
-var geoFire = new GeoFire(firebaseRef.child("shoutouts"));
-
 var today = new Date();
 var time = today.getTime();
 var dd = today.getDate();
@@ -18,105 +14,41 @@ if(mm<10) {
 
 today = mm+'/'+dd+'/'+yyyy;
 
-var shoutoutsInQuery = {};
 
-var geoQuery = geoFire.query({
-  center: center,
-  radius: radiusInKm
-});
-
-firebaseRef.forEach(function(child) {
-	console.log(child.location.latitude);
-});
+// must retrieve post that are around the user --how?
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-function postShoutout(longValue, latValue, category, userName, date, time, title, description) {
+function postShoutout(location, username, date, time, title, description) {
 	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/shoutouts');
-	firebaseRef.set({
-
-	  location: {
-	    longitude: longValue,
-	    latitude: latValue
-	  },
-
-	  type: category,
-
-	  username: userName,
-
-	  timestamp: {
-	  	date: today,
-	  	time: time,
-	  },
-
-	  title: title,
-
-	  description: description
-
+	
+	var geoFire = new GeoFire(firebaseRef);
+	var shoutoutID = firebaseRef; // need to add acessor for retrieving userID
+	geoFire.set(shoutoutID, location).then(function() {
+		firebaseRef.child(shoutoutID).update({"username" : username, "title": title, "content" : content});
 	});
 }
 
-function postShoutoutComment(userName, today, time, description) {
-	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/shoutouts/comments');
-	firebaseRef.set({
-
-	  username: userName,
-
-	  timestamp: {
-	  	date: today,
-	  	time: time,
-	  },
-
-	  comment: description
-
+function postShoutoutComment(username, title, content, location) {
+	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/shoutouts');
+	
+	var geoFire = new GeoFire(firebaseRef);
+	var userID = firebaseRef;
+	geoFire.set(userID, [11.1,13.0]).then(function() {
+		firebaseRef.child(userID).update({"username" : username, "title": title, "content" : content, "date" : today});
 	});
+}
+
+function createAccount(userName, password) {
+	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/users');
 }
 
 function testShoutout() {
-	//postShoutout(11.02,-20.81,"Tech","SassMaiden25",getDate(), "WATCH OUT", "THERE'S ICE ERRRRYWHERE");
 	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/shoutouts');
 	
-	firebaseRef.push({
-	  location: {
-	    longitude: longValue,
-	    latitude: latValue
-	  },
+	/*firebaseRef.orderByChild("userID").limitToLast(1).on("child_added", function(snapshot) {
+		console.log(snapshot.val());
+	});*/ // can retrieve last post
 
-	  type: category,
-
-	  username: userName,
-
-	  timestamp: {
-	  	date: today,
-	  	time: time,
-	  },
-
-	  title: title,
-
-	  description: description
-
-	});
-
-	//firebaseRef.child('shoutouts').orderByChild('username').equalTo('Test2').on('child_added',function(snapshot) {
-	//	var a = snapshot.val();
-	//	console.log(a);
-	//});
-		
-	//firebaseRef.on("value", function(snapshot) {
- 	// 	console.log(snapshot.val());
-	//});
 }
 
 function testShoutout2() {
