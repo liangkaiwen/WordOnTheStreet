@@ -1,3 +1,4 @@
+/*
 var server = {
 	//return all shoutout objects as an array
 	getShoutouts: function(lat, lng, radius) {
@@ -30,4 +31,45 @@ var server = {
 		if (unit=="N") { dist = dist * 0.8684 }
 		return dist
 	}
+*/
+
+var today = new Date();
+var time = today.getTime();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd='0'+dd
+} 
+
+if(mm<10) {
+    mm='0'+mm
+} 
+
+today = mm+'/'+dd+'/'+yyyy;
+
+
+function postShoutout(location, username, date, title, content) {
+	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/shoutouts');
+	
+	var geoFire = new GeoFire(firebaseRef);
+	var newShoutoutRef = firebaseRef.push(); 
+	var shoutoutID = newShoutoutRef.key();
+	geoFire.set(shoutoutID, location);
+	firebaseRef.child(shoutoutID).update({"username" : username, "date": date, "title": title, "content" : content));
+
+}
+
+function postShoutoutComment(username, title, content, location) {
+	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/shoutouts');
+
+}
+
+function testShoutout() {
+	postShoutout([-1.2,30.40], "eyiaaaa", today, "Hello", "Testing this shit")
+	/*firebaseRef.orderByChild("userID").limitToLast(1).on("child_added", function(snapshot) {
+		console.log(snapshot.val());
+	});*/ // can retrieve last post
+
 }
