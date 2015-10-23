@@ -57,8 +57,36 @@ function postShoutout(location, username, date, title, content) {
 	var newShoutoutRef = firebaseRef.push(); 
 	var shoutoutID = newShoutoutRef.key();
 	geoFire.set(shoutoutID, location);
-	firebaseRef.child(shoutoutID).update({"username" : username, "date": date, "title": title, "content" : content));
+	firebaseRef.child(shoutoutID).update({"username" : username, "date": date, "title": title, "content" : content});
 
+}
+
+function createUser(email, password) {
+	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/');
+	firebaseRef.createUser({
+		email	 : email,
+		password : password
+	}, function(error, userData) {
+	  if (error) {
+	    console.log("Error creating user:", error);
+	  } else {
+	    console.log("Successfully created user account with uid:", userData.uid);
+  		}
+  	});
+}
+
+function authenicateUser(email, password) {
+	var firebaseRef = new Firebase('https://word-on-the-street.firebaseio.com/');
+	firebaseRef.authWithPassword({
+	 	email    : email,
+	 	password : password
+	}, function(error, authData) {
+	  if (error) {
+	    console.log("Login Failed!", error);
+	  } else {
+	    console.log("Authenticated successfully with payload:", authData);
+	  }
+	});
 }
 
 function postShoutoutComment(username, title, content, location) {

@@ -4,8 +4,9 @@ $(window).load(function() {
 
 function login() {
 	$("#login").submit(function() {
-		var username = $("#username").val();
+		var email = $("#email").val();
 		var password = $("#password").val();
+		authenicateUser(email, password);
 		testloading();
 	});
 }
@@ -20,3 +21,4 @@ function testloading() {
 		$("#map").animate({opacity: 1});
 	}, delay);
 }
+

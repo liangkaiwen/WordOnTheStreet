@@ -24,7 +24,7 @@ var initMap = function() {
       			title: "We are here"
       		});
 
-          var shoutouts = server.getShoutouts(pos.lat, pos.lng, 1000);
+          /*var shoutouts = server.getShoutouts(pos.lat, pos.lng, 1000);
           for (var i = 0; i < shoutouts.length; i++) {
             var shoutout = shoutouts[i];
             var shoutoutMarker = new google.maps.Marker({
@@ -33,7 +33,7 @@ var initMap = function() {
               draggable: false,
               animation: google.maps.Animation.DROP
             });
-          }
+          }*/
 
       		map.setZoom(13);
 
