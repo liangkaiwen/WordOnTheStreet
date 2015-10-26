@@ -1,5 +1,13 @@
 $(window).load(function() {
-	login();
+	$("#createAccount").submit(function() {
+		createAccount();
+		return false;
+	});
+
+	$("#login").submit(function() {
+		login();
+		return false;
+	});
 });
 
 function login() {
@@ -19,24 +27,21 @@ function displayCreateAccount() {
 		}, delay);
 }
 function createAccount() {
-	
-	$("#createAccount").submit(function() {
-		var email = $("#email").val();
-		var password = $("#password").val();
-		var passwordVerify = $("#passwordVerify").val();
-		if (password == passwordVerify) {
-			createUser(email, password);
-			testloading2();
-		} else {
-			form.elements[password].className = 'invalid-field'
-			form.elements[passwordVerify].className = 'invalid-field'
-			var errMsg = document.getElementById('error-message');
-    		errMsg.innerHTML = 'Please provide values for the required fields';
-    		errMsg.style.display = 'block';
-		}
+	var email = $("#accEmail").val();
+	var password = $("#accPassword").val();
+	var passwordVerify = $("#accPasswordVerify").val();
+	if (password === passwordVerify) {
+		createUser(email, password);
+		authenicateUser(email, password);
+		testloading2();
+	} else {
+		var errMsg = document.getElementById('error-message');
+		errMsg.innerHTML = 'Please provide values for the required fields';
+		errMsg.style.display = 'block';
+	}
 		
-	});
 }
+
 
 function testloading() {
 	$("#sign-in .row").animate({opacity: 0.5});
@@ -50,11 +55,11 @@ function testloading() {
 }
 
 function testloading2() {
-	$("#createAccount .row").animate({opacity: 0.5});
+	$("#createAccountDisplay").animate({opacity: 0.5});
 	$("#loadingscreen").fadeIn(500);
-	var delay = 3000;
+	var delay = 1000;
 	setTimeout(function() {
-		$("#createAccount").fadeOut(1000);
+		$("#createAccountDisplay").fadeOut(500);
 		$("#button").fadeIn(500);
 		$("#map").animate({opacity: 1});
 	}, delay);
