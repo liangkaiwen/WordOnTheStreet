@@ -28,7 +28,7 @@
 		<div id="sign-in">
 			<img id="logo" src="resources/logo1.png" alt="logoimage">
 				<div class="row">
-	    			<form id="login" class="col s12" action="#">
+	    			<form id="login" class="col s12" action="#" >
 	    				<div class="row">
 	        				<div class="input-field col s12">
 	          					<input id="email" type="text" class="validate">
@@ -43,9 +43,15 @@
 	      				</div>
 	      				<div class="col s12">
 	      					<button id="loginbutton" class="btn waves-effect waves-light" type="submit" name="action">Log In</button>
-	      					<button id="createAccount" class="btn waves-effect waves-light" type="submit" name="action">Create Account</button>
 	      				</div>
 	    			</form>
+	    			<div class="col s12">
+	    				<div class="row">
+	    					<div class="col s12">
+	      						<button id="createAccountButton" class="btn waves-effect red" onClick="return displayCreateAccount()">Create Account</button>
+	      					</div>
+	      				</div>
+	      			</div>
 	  			</div>
 	  			<div id="loadingscreen" style="display: none;">
 	  				<div class="preloader-wrapper big active">
@@ -70,60 +76,92 @@
 		
 		<div class = "col-md-6" id="addinfo">
 			<action="#">
-				<div id="body2">
-					<div class="row">
-						<h3>Add a Shoutout!</h3>	
-					</div>
-					<div class="row">
-						<form class="row">
-							<p>Category:</p>
-						     <!-- Dropdown Trigger -->
-						  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
-
-						  <!-- Dropdown Structure -->
-						  <ul id='dropdown1' class='dropdown-content'>
-						    <li><a href="#!">Cool Places to Visit</a></li>
-						    <li><a href="#!">Restaurants</a></li>
-						    <li><a href="#!">Scavenger Hunt</a></li>
-						  </ul>
-							<a class='dropdown-button btn col s6' href='#' data-activates='dropdown1'>Type: </a>
-						    <ul id='dropdown1' class='dropdown-content'>
-						      <li value="cool">Cool Places to Visit</li>
-						      <li class="divider"></li>
-						      <li value="restaurants">Restaurants</li>
-						      <li class="divider"></li>
-						      <li value="scavenger">Scavenger Hunt Game</li>
-						    </ul>
-						</form>
-					    <form class="row">
-					      <div class="row"> 
-					        <div class="input-field col s12">
-					          <input id="title" type="text" class="validate">
-					          <label for="title">Title</label>
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s12">
-					          <input id="textarea1" type="text" class="materialize-textarea">
-					          <input id="textarea1" type="password" class="materialize-textarea">
-					          <label for="textarea1">Description</label>
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s12">
-					          <p>Insert a Picture</p>
-					          <input id="media" type="file" name="imagefilename" class="validate" accept="image/x-png, image/gif, image/jpeg">
-					          <input id="media" type="email" class="validate">
-					          <label for="media">Media</label>
-					        </div>
-					      </div> 	
-					      <div align="center">
-					      	<button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-						  </div>
-					    </form>
-					</div>
+			<div id="body2">
+				<div class="row">
+					<h3>Add a Shoutout!</h3>	
 				</div>
+				<div class="row">
+					<form class="row">
+						<p>Category:</p>
+					     <!-- Dropdown Trigger -->
+					  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+
+					  <!-- Dropdown Structure -->
+					  <ul id='dropdown1' class='dropdown-content'>
+					    <li><a href="#!">Cool Places to Visit</a></li>
+					    <li><a href="#!">Restaurants</a></li>
+					    <li><a href="#!">Scavenger Hunt</a></li>
+					  </ul>
+						<a class='dropdown-button btn col s6' href='#' data-activates='dropdown1'>Type: </a>
+					    <ul id='dropdown1' class='dropdown-content'>
+					      <li value="cool">Cool Places to Visit</li>
+					      <li class="divider"></li>
+					      <li value="restaurants">Restaurants</li>
+					      <li class="divider"></li>
+					      <li value="scavenger">Scavenger Hunt Game</li>
+					    </ul>
+					</form>
+				    <form class="row">
+				      <div class="row"> 
+				        <div class="input-field col s12">
+				          <input id="title" type="text" class="validate">
+				          <label for="title">Title</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="textarea1" type="text" class="materialize-textarea">
+				          <input id="textarea1" type="password" class="materialize-textarea">
+				          <label for="textarea1">Description</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <p>Insert a Picture</p>
+				          <input id="media" type="file" name="imagefilename" class="validate" accept="image/x-png, image/gif, image/jpeg">
+				          <input id="media" type="email" class="validate">
+				          <label for="media">Media</label>
+				        </div>
+				      </div> 	
+				      <div align="center">
+				      	<button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+					  </div>
+				    </form>
+				</div>
+			</div>
 		</div>
+
+		<div id="createAccountDisplay" class="col-md-6">
+			<action="#">
+				<div class="row">
+					<h3>Create an account</h3>	
+				</div>
+				<p class="alert alert-danger" id="error-message"></p>
+			    <form id="createAccount" class="row" >
+			      <div class="row"> 
+			        <div class="input-field col s12">
+			          <input id="email" type="text" class="validate">
+			          <label for="email">Email</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			       <div class="input-field col s12">
+			          <input id="password" type="password" class="validate">
+			          <label for="password">Password</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <input id="passwordVerify" type="password" class="validate">
+			          <label for="passwordVerify">Verify Password</label>
+			        </div>
+			      </div> 	
+			      <div align="center">
+			      	<button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+				  </div>
+			    </form>
+		</div>
+
 		<button id="button" class="btn-floating btn-large waves-effect waves-light red">+</button>
 	</main>
 </body>
